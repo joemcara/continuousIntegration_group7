@@ -171,7 +171,7 @@ class GymMembership:
 if __name__ == "__main__":
     gym = GymMembership()
     # Pass 'y' or 'n' as the confirmation argument directly
-    total_cost = gym.run(plan_name='Basic', num_members=1, selected_features=["Personal Training", "Group Classes"], confirm_membership='y')
+    total_cost = gym.run(plan_name='Basic', num_members=1, selected_features=["Personal Training", "Group Classes"], confirm_membership='n')
     if total_cost != -1:
         print(f"Final Membership Cost: ${total_cost:.2f}")
     else:
