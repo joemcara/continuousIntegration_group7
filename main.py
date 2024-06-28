@@ -55,6 +55,8 @@ class GymMembership:
             self.total_discount = 0
         self.total_cost -= self.total_discount
 
+        
+
 
     def premiun_membership(self):
         """Function apply an additional 15% in plan premium"""
@@ -103,5 +105,5 @@ if __name__ == "__main__":
     else:
 
 
-        
+
         print("Membership selection was canceled or invalid.")
