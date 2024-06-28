@@ -1,5 +1,6 @@
 """ Unit Testing """
 import unittest
+from unittest import runner
 from main import GymMembership
 
 class TestGymMembership(unittest.TestCase):
@@ -36,5 +37,5 @@ class TestGymMembership(unittest.TestCase):
         self.assertEqual(self.membership.calculate_cost(), 50)
 
 if __name__ == '__main__':
-    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
+    unittest.main(testRunner=runner.XMLTestRunner(output='test-reports'))
     
