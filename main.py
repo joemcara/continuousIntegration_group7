@@ -158,8 +158,8 @@ class GymMembership:
 
             self.display_membership_confirmation()
 
-            confirmation = input("Do you confirm this membership? (y/n): ").lower()
-            if confirmation == 'y':
+            confirmation = input("Do you confirm this membership? (y/n): ")
+            if confirmation.lower() == 'y':
                 return self.confirm_membership()
             else:
                 print("Membership selection canceled. Please make changes to your selections.")
