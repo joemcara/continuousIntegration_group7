@@ -158,7 +158,7 @@ class GymMembership:
 
             self.display_membership_confirmation()
 
-            confirmation = input("Do you confirm this membership? (y/n): ")
+            confirmation = input("Do you confirm this membership? (y/n): ").lower()
             if confirmation.lower() == 'y':
                 return self.confirm_membership()
             else:
@@ -171,8 +171,7 @@ class GymMembership:
 
 if __name__ == "__main__":
     gym = GymMembership()
-    total_cost = gym.run(plan_name='Basic', num_members=1,
-                         selected_features=["Personal Training", "Group Classes"])
+    total_cost = gym.run(plan_name='Basic', num_members=1,selected_features=["Personal Training", "Group Classes"])
     if total_cost != -1:
         print(f"Final Membership Cost: ${total_cost:.2f}")
     else:
