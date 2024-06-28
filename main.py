@@ -143,7 +143,7 @@ class GymMembership:
             print("Membership selection canceled.")
             return -1
 
-    def run(self, plan_name, num_members=1, selected_features=None):
+    def run(self, plan_name, num_members=1, selected_features=None, confirm_membership='n'):
         """ Run program """
         try:
             self.select_membership_plan(plan_name, num_members)
@@ -158,8 +158,7 @@ class GymMembership:
 
             self.display_membership_confirmation()
 
-            confirmation = input("Do you confirm this membership? (y/n): ").lower()
-            if confirmation.lower() == 'y':
+            if confirm_membership.lower() == 'y':
                 return self.confirm_membership()
             else:
                 print("Membership selection canceled. Please make changes to your selections.")
@@ -171,9 +170,9 @@ class GymMembership:
 
 if __name__ == "__main__":
     gym = GymMembership()
-    total_cost = gym.run(plan_name='Basic', num_members=1,selected_features=["Personal Training", "Group Classes"])
+    # Pass 'y' or 'n' as the confirmation argument directly
+    total_cost = gym.run(plan_name='Basic', num_members=1, selected_features=["Personal Training", "Group Classes"], confirm_membership='y')
     if total_cost != -1:
         print(f"Final Membership Cost: ${total_cost:.2f}")
     else:
         print("Membership selection was canceled or invalid.")
-        
