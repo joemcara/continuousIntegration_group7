@@ -62,4 +62,7 @@ if __name__ == "__main__":
     if total_cost != -1:
         print(f"Final Membership Cost: ${total_cost:.2f}")
     else:
+
+
+        
         print("Membership selection was canceled or invalid.")
