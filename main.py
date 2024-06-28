@@ -2,7 +2,7 @@
 class GymMembership:
     """Gym Membership Management System"""
 
-    def _init_(self):
+    def __init__(self):
         self.membership_plans = {
         'Basic': {'cost': 50, 
                   'benefits': ['Access to gym equipment'], 
@@ -59,6 +59,7 @@ class GymMembership:
                 self.selected_features.append(feature)
             else:
                 raise ValueError("Invalid feature selected")
+            
 
     def get_discount(self):
         """Function get discount"""
@@ -84,6 +85,7 @@ class GymMembership:
         additional_features_cost = sum(
             self.additional_features[feature] for feature in self.selected_features
         )
+
 
         cost_members = base_cost * self.num_members
         self.total_cost = cost_members + (additional_features_cost * self.num_members)
@@ -141,47 +143,38 @@ class GymMembership:
             print("Membership selection canceled.")
             return -1
 
-    def run(self):
+    def run(self, plan_name, num_members=1, selected_features=None):
         """ Run program """
-        while True:
-            try:
-                self.display_membership_plans()
-                plan = input("Select a membership plan: ").capitalize()
-                self.display_message_multiple_members()
-                num_members = int(input("Enter the number of members: "))
-                self.select_membership_plan(plan, num_members)
+        try:
+            self.select_membership_plan(plan_name, num_members)
 
-                if not self.is_available_plan():
-                    continue
+            if not self.is_available_plan():
+                raise ValueError("Invalid membership plan selected or unavailable.")
 
-                add_features = input("Do you want to add additional features? (y/n): ")
-                if add_features.lower() == 'y':
-                    self.display_additional_features()
-                    message_feature = "Enter the feature numbers you want to add (comma separated):"
-                    features = input(message_feature).split(', ')
-                    self.add_additional_features(features)
-
+            if selected_features:
+                self.add_additional_features(selected_features)
                 if not self.is_available_features():
-                    continue
+                    raise ValueError("Invalid features selected or unavailable.")
 
-                self.display_membership_confirmation()
+            self.display_membership_confirmation()
 
-                confirmation = input("Do you confirm this membership? (y/n): ").lower()
-                if confirmation == 'y':
-                    return self.confirm_membership()
-                else:
-                    print("Membership selection canceled. Please make changes to your selections.")
-                    continue  # Repeat the loop to allow changes
+            confirmation = input("Do you confirm this membership? (y/n): ").lower()
+            if confirmation == 'y':
+                return self.confirm_membership()
+            else:
+                print("Membership selection canceled. Please make changes to your selections.")
+                return -1
 
-            except ValueError as e:
-                print(f"Error: {e}")
-                continue
+        except ValueError as e:
+            print(f"Error: {e}")
+            return -1
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     gym = GymMembership()
-    total_cost = gym.run()
+    total_cost = gym.run(plan_name='Basic', num_members=1,
+                         selected_features=["Personal Training", "Group Classes"])
     if total_cost != -1:
         print(f"Final Membership Cost: ${total_cost:.2f}")
     else:
-    else:
         print("Membership selection was canceled or invalid.")
+        
