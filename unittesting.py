@@ -36,5 +36,5 @@ class TestGymMembership(unittest.TestCase):
         self.assertEqual(self.membership.calculate_cost(), 50)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
     
