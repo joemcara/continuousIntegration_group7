@@ -136,7 +136,7 @@ class GymMembership:
         print(f"Total Discount Applied: ${self.total_discount:.2f}")
         print(f"Total Cost: ${self.total_cost:.2f}")
 
-        confirmation = input("Do you confirm this membership? (y/n): ")
+        confirmation = input("Do you confirm this membership? (y/n): ").strip()
         if confirmation.lower() == 'y':
             return self.total_cost
         else:
